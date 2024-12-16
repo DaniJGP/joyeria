@@ -16,8 +16,10 @@ const ALLOWED_FIELDS = [
 const ALLOWED_DIRECTIONS = ['ASC', 'DESC'];
 
 const createHATEOAS = (joyas) => {
-    const total = joyas.length;
+    const totalJoyas = joyas.length;
+    let stockTotal = 0;
     const results = joyas.map((j) => {
+        stockTotal += j.stock
         return {
             nombre: j.nombre,
             url: `/joyas/joya/${j.id}`,
@@ -25,7 +27,8 @@ const createHATEOAS = (joyas) => {
     });
 
     return {
-        total,
+        totalJoyas,
+        stockTotal,
         results,
     };
 };
