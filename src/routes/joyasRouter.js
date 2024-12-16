@@ -4,6 +4,6 @@ const { handleGetJoyas, handleGetJoyasFilters } = require('../controllers/APIcon
 const router = Router();
 
 router.get('/', handleGetJoyas);
-router.get('/filters', handleGetJoyasFilters);
+router.get('/filtros', handleGetJoyasFilters);
 
 module.exports = router;
