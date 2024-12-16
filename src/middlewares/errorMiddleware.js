@@ -1,4 +1,5 @@
 const errorMiddleware = (err, req, res, next) => {
+    
     const errorMap = {
         INVALID_FIELD: { status: 400, message: 'Campo invalido' },
         INVALID_DIRECTION: { status: 400, message: 'Dirección inválida' },
@@ -12,14 +13,16 @@ const errorMiddleware = (err, req, res, next) => {
         },
     };
 
-    if (err.name === 'Error') {
+    console.error(err);
+
+    if (err.name === 'Error' && errorMap[err.message]) {
         const thisError = errorMap[err.message];
         return res
             .status(thisError.status)
             .json({ message: thisError.message });
-    } else {
-        return res.status(500).json({ msg: 'Error interno del servidor' });
     }
+
+    return res.status(500).json({ msg: 'Error interno del servidor' });
 };
 
 module.exports = errorMiddleware;
